@@ -20,8 +20,20 @@ const http=require('http');
 //this is our create server callback fn. it will be called whenever request reaches our server
 //this method returns a server instance
 const server=http.createServer((req,res)=>{
-    console.log('shiva');
-    //console.log(req);
+    console.log(req.url);
+    if(req.url=='/home'){
+        res.write('hello');
+        res.end();
+    }
+    if(req.url=='/about'){
+        res.write('about us page');
+        res.end();
+    }
+    if(req.url=='/node'){
+        res.write('welcome to node js project');
+        res.end();
+    }
+
 });
 
 /*
