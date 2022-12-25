@@ -1,0 +1,19 @@
+Event loop  is a loop which is run and started by nodejs that keeps the node js process running 
+It handles callback function and it has certain order in which it goes through the callbacks
+
+
+At each iteration-
+i) Timers- check for timer callback 
+ii) check for other I/O related callbacks (File or Network ) this callback may take a long time to finish 
+If it takes long time nodejs will go in next phase and postpone callbacks of this phase till next iteration
+iii) after working on these open callback it will enter in Poll phase here it looks for new I/O events  and do it best to execute 
+their callback immediately
+iv)If poll phase callback could not able to execute than this callback registered as pending callback
+It also check for timer cb due to be executed and it will jump to timer phase to execute them right away.
+
+v)check phase- next all setImmediate callback will be execute in this phase they are like setTimeout and setInterval
+vi)at end of each iteration cycle node js will execute all close event callbacks
+vii) we might exit the whole program only if there is no remaining callback or eventlistener which are register to execute
+node js keeps track of this as a counter(reference or refes)
+    +1-to register cb and event
+    -1- after fininshing the cb and event 
